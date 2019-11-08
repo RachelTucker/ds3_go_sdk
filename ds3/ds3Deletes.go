@@ -1586,4 +1586,97 @@ func (client *Client) DelegateDeleteUserSpectraS3(request *models.DelegateDelete
     return models.NewDelegateDeleteUserSpectraS3Response(response)
 }
 
+func (client *Client) DeleteGenericDaoNotificationRegistrationInternal(request *models.DeleteGenericDaoNotificationRegistrationInternalRequest) (*models.DeleteGenericDaoNotificationRegistrationInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_DELETE).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewDeleteGenericDaoNotificationRegistrationInternalResponse(response)
+}
+
+func (client *Client) DeleteFeatureKeyInternal(request *models.DeleteFeatureKeyInternalRequest) (*models.DeleteFeatureKeyInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_DELETE).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewDeleteFeatureKeyInternalResponse(response)
+}
+
+func (client *Client) QuiesceDataPathToPrepareForShutdownInternal(request *models.QuiesceDataPathToPrepareForShutdownInternalRequest) (*models.QuiesceDataPathToPrepareForShutdownInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_DELETE).
+        WithPath().
+        WithOptionalVoidQueryParam("force", request.Force).
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewQuiesceDataPathToPrepareForShutdownInternalResponse(response)
+}
+
+func (client *Client) DeleteUserInternal(request *models.DeleteUserInternalRequest) (*models.DeleteUserInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_DELETE).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewDeleteUserInternalResponse(response)
+}
+
 

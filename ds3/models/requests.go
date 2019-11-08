@@ -9518,3 +9518,237 @@ func NewRegenerateUserSecretKeySpectraS3Request(userId string) *RegenerateUserSe
     }
 }
 
+type GetCacheEntriesInternalRequest struct {
+}
+
+func NewGetCacheEntriesInternalRequest() *GetCacheEntriesInternalRequest {
+    return &GetCacheEntriesInternalRequest{
+    }
+}
+
+type PutGenericDaoNotificationRegistrationInternalRequest struct {
+    DaoType string
+    Format HttpResponseFormatType
+    NamingConvention NamingConventionType
+    NotificationEndPoint string
+    NotificationHttpMethod RequestType
+}
+
+func NewPutGenericDaoNotificationRegistrationInternalRequest(daoType string, notificationEndPoint string) *PutGenericDaoNotificationRegistrationInternalRequest {
+    return &PutGenericDaoNotificationRegistrationInternalRequest{
+        DaoType: daoType,
+        NotificationEndPoint: notificationEndPoint,
+    }
+}
+
+func (putGenericDaoNotificationRegistrationInternalRequest *PutGenericDaoNotificationRegistrationInternalRequest) WithFormat(format HttpResponseFormatType) *PutGenericDaoNotificationRegistrationInternalRequest {
+    putGenericDaoNotificationRegistrationInternalRequest.Format = format
+    return putGenericDaoNotificationRegistrationInternalRequest
+}
+
+func (putGenericDaoNotificationRegistrationInternalRequest *PutGenericDaoNotificationRegistrationInternalRequest) WithNamingConvention(namingConvention NamingConventionType) *PutGenericDaoNotificationRegistrationInternalRequest {
+    putGenericDaoNotificationRegistrationInternalRequest.NamingConvention = namingConvention
+    return putGenericDaoNotificationRegistrationInternalRequest
+}
+
+func (putGenericDaoNotificationRegistrationInternalRequest *PutGenericDaoNotificationRegistrationInternalRequest) WithNotificationHttpMethod(notificationHttpMethod RequestType) *PutGenericDaoNotificationRegistrationInternalRequest {
+    putGenericDaoNotificationRegistrationInternalRequest.NotificationHttpMethod = notificationHttpMethod
+    return putGenericDaoNotificationRegistrationInternalRequest
+}
+
+type DeleteGenericDaoNotificationRegistrationInternalRequest struct {
+    NotificationId string
+}
+
+func NewDeleteGenericDaoNotificationRegistrationInternalRequest(notificationId string) *DeleteGenericDaoNotificationRegistrationInternalRequest {
+    return &DeleteGenericDaoNotificationRegistrationInternalRequest{
+        NotificationId: notificationId,
+    }
+}
+
+type GetGenericDaoNotificationRegistrationInternalRequest struct {
+    NotificationId string
+}
+
+func NewGetGenericDaoNotificationRegistrationInternalRequest(notificationId string) *GetGenericDaoNotificationRegistrationInternalRequest {
+    return &GetGenericDaoNotificationRegistrationInternalRequest{
+        NotificationId: notificationId,
+    }
+}
+
+type GetGenericDaoNotificationRegistrationsInternalRequest struct {
+    LastPage bool
+    PageLength *int
+    PageOffset *int
+    PageStartMarker *string
+    UserId *string
+}
+
+func NewGetGenericDaoNotificationRegistrationsInternalRequest() *GetGenericDaoNotificationRegistrationsInternalRequest {
+    return &GetGenericDaoNotificationRegistrationsInternalRequest{
+    }
+}
+
+func (getGenericDaoNotificationRegistrationsInternalRequest *GetGenericDaoNotificationRegistrationsInternalRequest) WithLastPage() *GetGenericDaoNotificationRegistrationsInternalRequest {
+    getGenericDaoNotificationRegistrationsInternalRequest.LastPage = true
+    return getGenericDaoNotificationRegistrationsInternalRequest
+}
+
+func (getGenericDaoNotificationRegistrationsInternalRequest *GetGenericDaoNotificationRegistrationsInternalRequest) WithPageLength(pageLength int) *GetGenericDaoNotificationRegistrationsInternalRequest {
+    getGenericDaoNotificationRegistrationsInternalRequest.PageLength = &pageLength
+    return getGenericDaoNotificationRegistrationsInternalRequest
+}
+
+func (getGenericDaoNotificationRegistrationsInternalRequest *GetGenericDaoNotificationRegistrationsInternalRequest) WithPageOffset(pageOffset int) *GetGenericDaoNotificationRegistrationsInternalRequest {
+    getGenericDaoNotificationRegistrationsInternalRequest.PageOffset = &pageOffset
+    return getGenericDaoNotificationRegistrationsInternalRequest
+}
+
+func (getGenericDaoNotificationRegistrationsInternalRequest *GetGenericDaoNotificationRegistrationsInternalRequest) WithPageStartMarker(pageStartMarker string) *GetGenericDaoNotificationRegistrationsInternalRequest {
+    getGenericDaoNotificationRegistrationsInternalRequest.PageStartMarker = &pageStartMarker
+    return getGenericDaoNotificationRegistrationsInternalRequest
+}
+
+func (getGenericDaoNotificationRegistrationsInternalRequest *GetGenericDaoNotificationRegistrationsInternalRequest) WithUserId(userId string) *GetGenericDaoNotificationRegistrationsInternalRequest {
+    getGenericDaoNotificationRegistrationsInternalRequest.UserId = &userId
+    return getGenericDaoNotificationRegistrationsInternalRequest
+}
+
+type PutFeatureKeyInternalRequest struct {
+    ErrorMessage *string
+    ExpirationDate *string
+    Key FeatureKeyType
+    LimitValue *int64
+}
+
+func NewPutFeatureKeyInternalRequest(key FeatureKeyType) *PutFeatureKeyInternalRequest {
+    return &PutFeatureKeyInternalRequest{
+        Key: key,
+    }
+}
+
+func (putFeatureKeyInternalRequest *PutFeatureKeyInternalRequest) WithErrorMessage(errorMessage string) *PutFeatureKeyInternalRequest {
+    putFeatureKeyInternalRequest.ErrorMessage = &errorMessage
+    return putFeatureKeyInternalRequest
+}
+
+func (putFeatureKeyInternalRequest *PutFeatureKeyInternalRequest) WithExpirationDate(expirationDate string) *PutFeatureKeyInternalRequest {
+    putFeatureKeyInternalRequest.ExpirationDate = &expirationDate
+    return putFeatureKeyInternalRequest
+}
+
+func (putFeatureKeyInternalRequest *PutFeatureKeyInternalRequest) WithLimitValue(limitValue int64) *PutFeatureKeyInternalRequest {
+    putFeatureKeyInternalRequest.LimitValue = &limitValue
+    return putFeatureKeyInternalRequest
+}
+
+type PutHeapDumpInternalRequest struct {
+    Application Application
+}
+
+func NewPutHeapDumpInternalRequest(application Application) *PutHeapDumpInternalRequest {
+    return &PutHeapDumpInternalRequest{
+        Application: application,
+    }
+}
+
+type DeleteFeatureKeyInternalRequest struct {
+    FeatureKey string
+}
+
+func NewDeleteFeatureKeyInternalRequest(featureKey string) *DeleteFeatureKeyInternalRequest {
+    return &DeleteFeatureKeyInternalRequest{
+        FeatureKey: featureKey,
+    }
+}
+
+type GetBeansRetrieverBeansInternalRequest struct {
+    BeansRetriever string
+}
+
+func NewGetBeansRetrieverBeansInternalRequest(beansRetriever string) *GetBeansRetrieverBeansInternalRequest {
+    return &GetBeansRetrieverBeansInternalRequest{
+        BeansRetriever: beansRetriever,
+    }
+}
+
+type GetBeansRetrieversInternalRequest struct {
+}
+
+func NewGetBeansRetrieversInternalRequest() *GetBeansRetrieversInternalRequest {
+    return &GetBeansRetrieversInternalRequest{
+    }
+}
+
+type QuiesceDataPathToPrepareForShutdownInternalRequest struct {
+    Force bool
+}
+
+func NewQuiesceDataPathToPrepareForShutdownInternalRequest() *QuiesceDataPathToPrepareForShutdownInternalRequest {
+    return &QuiesceDataPathToPrepareForShutdownInternalRequest{
+    }
+}
+
+func (quiesceDataPathToPrepareForShutdownInternalRequest *QuiesceDataPathToPrepareForShutdownInternalRequest) WithForce() *QuiesceDataPathToPrepareForShutdownInternalRequest {
+    quiesceDataPathToPrepareForShutdownInternalRequest.Force = true
+    return quiesceDataPathToPrepareForShutdownInternalRequest
+}
+
+type PutFakeTapeEnvironmentInternalRequest struct {
+}
+
+func NewPutFakeTapeEnvironmentInternalRequest() *PutFakeTapeEnvironmentInternalRequest {
+    return &PutFakeTapeEnvironmentInternalRequest{
+    }
+}
+
+type PutUserInternalRequest struct {
+    DefaultDataPolicyId *string
+    Force bool
+    Id *string
+    MaxBuckets *int
+    Name string
+    SecretKey *string
+}
+
+func NewPutUserInternalRequest(name string) *PutUserInternalRequest {
+    return &PutUserInternalRequest{
+        Name: name,
+    }
+}
+
+func (putUserInternalRequest *PutUserInternalRequest) WithDefaultDataPolicyId(defaultDataPolicyId string) *PutUserInternalRequest {
+    putUserInternalRequest.DefaultDataPolicyId = &defaultDataPolicyId
+    return putUserInternalRequest
+}
+
+func (putUserInternalRequest *PutUserInternalRequest) WithForce() *PutUserInternalRequest {
+    putUserInternalRequest.Force = true
+    return putUserInternalRequest
+}
+
+func (putUserInternalRequest *PutUserInternalRequest) WithId(id string) *PutUserInternalRequest {
+    putUserInternalRequest.Id = &id
+    return putUserInternalRequest
+}
+
+func (putUserInternalRequest *PutUserInternalRequest) WithMaxBuckets(maxBuckets int) *PutUserInternalRequest {
+    putUserInternalRequest.MaxBuckets = &maxBuckets
+    return putUserInternalRequest
+}
+
+func (putUserInternalRequest *PutUserInternalRequest) WithSecretKey(secretKey string) *PutUserInternalRequest {
+    putUserInternalRequest.SecretKey = &secretKey
+    return putUserInternalRequest
+}
+
+type DeleteUserInternalRequest struct {
+    UserInternal string
+}
+
+func NewDeleteUserInternalRequest(userInternal string) *DeleteUserInternalRequest {
+    return &DeleteUserInternalRequest{
+        UserInternal: userInternal,
+    }
+}
+

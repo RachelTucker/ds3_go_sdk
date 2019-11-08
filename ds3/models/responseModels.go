@@ -2388,6 +2388,56 @@ func (ds3TargetFailureNotificationRegistration *Ds3TargetFailureNotificationRegi
     }
 }
 
+type GenericDaoNotificationRegistration struct {
+    CreationDate string
+    DaoType *string
+    Format HttpResponseFormatType
+    Id string
+    LastFailure *string
+    LastHttpResponseCode *int
+    LastNotification *string
+    NamingConvention NamingConventionType
+    NotificationEndPoint *string
+    NotificationHttpMethod RequestType
+    NumberOfFailuresSinceLastSuccess int
+    UserId *string
+}
+
+func (genericDaoNotificationRegistration *GenericDaoNotificationRegistration) parse(xmlNode *XmlNode, aggErr *AggregateError) {
+
+    // Parse Child Nodes
+    for _, child := range xmlNode.Children {
+        switch child.XMLName.Local {
+        case "CreationDate":
+            genericDaoNotificationRegistration.CreationDate = parseString(child.Content)
+        case "DaoType":
+            genericDaoNotificationRegistration.DaoType = parseNullableString(child.Content)
+        case "Format":
+            parseEnum(child.Content, &genericDaoNotificationRegistration.Format, aggErr)
+        case "Id":
+            genericDaoNotificationRegistration.Id = parseString(child.Content)
+        case "LastFailure":
+            genericDaoNotificationRegistration.LastFailure = parseNullableString(child.Content)
+        case "LastHttpResponseCode":
+            genericDaoNotificationRegistration.LastHttpResponseCode = parseNullableInt(child.Content, aggErr)
+        case "LastNotification":
+            genericDaoNotificationRegistration.LastNotification = parseNullableString(child.Content)
+        case "NamingConvention":
+            parseEnum(child.Content, &genericDaoNotificationRegistration.NamingConvention, aggErr)
+        case "NotificationEndPoint":
+            genericDaoNotificationRegistration.NotificationEndPoint = parseNullableString(child.Content)
+        case "NotificationHttpMethod":
+            parseEnum(child.Content, &genericDaoNotificationRegistration.NotificationHttpMethod, aggErr)
+        case "NumberOfFailuresSinceLastSuccess":
+            genericDaoNotificationRegistration.NumberOfFailuresSinceLastSuccess = parseInt(child.Content, aggErr)
+        case "UserId":
+            genericDaoNotificationRegistration.UserId = parseNullableString(child.Content)
+        default:
+            log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing GenericDaoNotificationRegistration.", child.XMLName.Local)
+        }
+    }
+}
+
 type JobCompletedNotificationRegistration struct {
     CreationDate string
     Format HttpResponseFormatType
@@ -6500,6 +6550,115 @@ func (tapeFailureList *TapeFailureList) parse(xmlNode *XmlNode, aggErr *Aggregat
     }
 }
 
+type Application Enum
+
+const (
+    APPLICATION_S3_SERVER Application = 1 + iota
+    APPLICATION_DATA_PLANNER Application = 1 + iota
+)
+
+func (application *Application) UnmarshalText(text []byte) error {
+    var str string = string(bytes.ToUpper(text))
+    switch str {
+        case "": *application = UNDEFINED
+        case "S3_SERVER": *application = APPLICATION_S3_SERVER
+        case "DATA_PLANNER": *application = APPLICATION_DATA_PLANNER
+        default:
+            *application = UNDEFINED
+            return errors.New(fmt.Sprintf("Cannot marshal '%s' into Application", str))
+    }
+    return nil
+}
+
+func (application Application) String() string {
+    switch application {
+        case APPLICATION_S3_SERVER: return "S3_SERVER"
+        case APPLICATION_DATA_PLANNER: return "DATA_PLANNER"
+        default:
+            log.Printf("Error: invalid Application represented by '%d'", application)
+            return ""
+    }
+}
+
+func (application Application) StringPtr() *string {
+    if application == UNDEFINED {
+        return nil
+    }
+    result := application.String()
+    return &result
+}
+
+func newApplicationFromContent(content []byte, aggErr *AggregateError) *Application {
+    if len(content) == 0 {
+        // no value
+        return nil
+    }
+    result := new(Application)
+    parseEnum(content, result, aggErr)
+    return result
+}
+type CreateHeapDumpParams struct {
+    Application Application
+    Path *string
+}
+
+func (createHeapDumpParams *CreateHeapDumpParams) parse(xmlNode *XmlNode, aggErr *AggregateError) {
+
+    // Parse Child Nodes
+    for _, child := range xmlNode.Children {
+        switch child.XMLName.Local {
+        case "Application":
+            parseEnum(child.Content, &createHeapDumpParams.Application, aggErr)
+        case "Path":
+            createHeapDumpParams.Path = parseNullableString(child.Content)
+        default:
+            log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing CreateHeapDumpParams.", child.XMLName.Local)
+        }
+    }
+}
+
+type DatabaseContents struct {
+    Types []Type
+}
+
+func (databaseContents *DatabaseContents) parse(xmlNode *XmlNode, aggErr *AggregateError) {
+
+    // Parse Child Nodes
+    for _, child := range xmlNode.Children {
+        switch child.XMLName.Local {
+        case "Types":
+            var model Type
+            model.parse(&child, aggErr)
+            databaseContents.Types = append(databaseContents.Types, model)
+        default:
+            log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing DatabaseContents.", child.XMLName.Local)
+        }
+    }
+}
+
+type Type struct {
+    BeansRetrieverName *string
+    DomainName *string
+    NumberOfType *int
+}
+
+func (type *Type) parse(xmlNode *XmlNode, aggErr *AggregateError) {
+
+    // Parse Child Nodes
+    for _, child := range xmlNode.Children {
+        switch child.XMLName.Local {
+        case "BeansRetrieverName":
+            type.BeansRetrieverName = parseNullableString(child.Content)
+        case "DomainName":
+            type.DomainName = parseNullableString(child.Content)
+        case "NumberOfType":
+            type.NumberOfType = parseNullableInt(child.Content, aggErr)
+        default:
+            log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing Type.", child.XMLName.Local)
+        }
+    }
+}
+
 type RestOperationType Enum
 
 const (
@@ -8116,6 +8275,25 @@ func (spectraUserList *SpectraUserList) parse(xmlNode *XmlNode, aggErr *Aggregat
             spectraUserList.SpectraUsers = append(spectraUserList.SpectraUsers, model)
         default:
             log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing SpectraUserList.", child.XMLName.Local)
+        }
+    }
+}
+
+type GenericDaoNotificationRegistrationList struct {
+    GenericDaoNotificationRegistrations []GenericDaoNotificationRegistration
+}
+
+func (genericDaoNotificationRegistrationList *GenericDaoNotificationRegistrationList) parse(xmlNode *XmlNode, aggErr *AggregateError) {
+
+    // Parse Child Nodes
+    for _, child := range xmlNode.Children {
+        switch child.XMLName.Local {
+        case "GenericDaoNotificationRegistration":
+            var model GenericDaoNotificationRegistration
+            model.parse(&child, aggErr)
+            genericDaoNotificationRegistrationList.GenericDaoNotificationRegistrations = append(genericDaoNotificationRegistrationList.GenericDaoNotificationRegistrations, model)
+        default:
+            log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing GenericDaoNotificationRegistrationList.", child.XMLName.Local)
         }
     }
 }

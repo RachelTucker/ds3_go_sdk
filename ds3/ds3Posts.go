@@ -1330,4 +1330,135 @@ func (client *Client) DelegateCreateUserSpectraS3(request *models.DelegateCreate
     return models.NewDelegateCreateUserSpectraS3Response(response)
 }
 
+func (client *Client) PutGenericDaoNotificationRegistrationInternal(request *models.PutGenericDaoNotificationRegistrationInternalRequest) (*models.PutGenericDaoNotificationRegistrationInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_POST).
+        WithPath().
+        WithQueryParam("dao_type", request.DaoType).
+        WithQueryParam("notification_end_point", request.NotificationEndPoint).
+        WithOptionalQueryParam("format", networking.InterfaceToStrPtr(request.Format)).
+        WithOptionalQueryParam("naming_convention", networking.InterfaceToStrPtr(request.NamingConvention)).
+        WithOptionalQueryParam("notification_http_method", networking.InterfaceToStrPtr(request.NotificationHttpMethod)).
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewPutGenericDaoNotificationRegistrationInternalResponse(response)
+}
+
+func (client *Client) PutFeatureKeyInternal(request *models.PutFeatureKeyInternalRequest) (*models.PutFeatureKeyInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_POST).
+        WithPath().
+        WithQueryParam("key", request.Key.String()).
+        WithOptionalQueryParam("error_message", request.ErrorMessage).
+        WithOptionalQueryParam("expiration_date", request.ExpirationDate).
+        WithOptionalQueryParam("limit_value", networking.Int64PtrToStrPtr(request.LimitValue)).
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewPutFeatureKeyInternalResponse(response)
+}
+
+func (client *Client) PutHeapDumpInternal(request *models.PutHeapDumpInternalRequest) (*models.PutHeapDumpInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_POST).
+        WithPath().
+        WithQueryParam("application", request.Application.String()).
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewPutHeapDumpInternalResponse(response)
+}
+
+func (client *Client) PutFakeTapeEnvironmentInternal(request *models.PutFakeTapeEnvironmentInternalRequest) (*models.PutFakeTapeEnvironmentInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_POST).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewPutFakeTapeEnvironmentInternalResponse(response)
+}
+
+func (client *Client) PutUserInternal(request *models.PutUserInternalRequest) (*models.PutUserInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_POST).
+        WithPath().
+        WithQueryParam("name", request.Name).
+        WithOptionalQueryParam("default_data_policy_id", request.DefaultDataPolicyId).
+        WithOptionalVoidQueryParam("force", request.Force).
+        WithOptionalQueryParam("id", request.Id).
+        WithOptionalQueryParam("max_buckets", networking.IntPtrToStrPtr(request.MaxBuckets)).
+        WithOptionalQueryParam("secret_key", request.SecretKey).
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+
+    // Invoke the HTTP request.
+    response, requestErr := networkRetryDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewPutUserInternalResponse(response)
+}
+
 

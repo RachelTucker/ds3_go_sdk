@@ -4199,3 +4199,129 @@ func (client *Client) GetUsersSpectraS3(request *models.GetUsersSpectraS3Request
     return models.NewGetUsersSpectraS3Response(response)
 }
 
+func (client *Client) GetCacheEntriesInternal(request *models.GetCacheEntriesInternalRequest) (*models.GetCacheEntriesInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_GET).
+        WithPath().
+        WithQueryParam("full_details", "").
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+    httpRedirectDecorator := networking.NewHttpTempRedirectDecorator(networkRetryDecorator, client.clientPolicy.maxRedirect)
+
+    // Invoke the HTTP request.
+    response, requestErr := httpRedirectDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewGetCacheEntriesInternalResponse(response)
+}
+
+func (client *Client) GetGenericDaoNotificationRegistrationInternal(request *models.GetGenericDaoNotificationRegistrationInternalRequest) (*models.GetGenericDaoNotificationRegistrationInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_GET).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+    httpRedirectDecorator := networking.NewHttpTempRedirectDecorator(networkRetryDecorator, client.clientPolicy.maxRedirect)
+
+    // Invoke the HTTP request.
+    response, requestErr := httpRedirectDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewGetGenericDaoNotificationRegistrationInternalResponse(response)
+}
+
+func (client *Client) GetGenericDaoNotificationRegistrationsInternal(request *models.GetGenericDaoNotificationRegistrationsInternalRequest) (*models.GetGenericDaoNotificationRegistrationsInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_GET).
+        WithPath().
+        WithOptionalVoidQueryParam("last_page", request.LastPage).
+        WithOptionalQueryParam("page_length", networking.IntPtrToStrPtr(request.PageLength)).
+        WithOptionalQueryParam("page_offset", networking.IntPtrToStrPtr(request.PageOffset)).
+        WithOptionalQueryParam("page_start_marker", request.PageStartMarker).
+        WithOptionalQueryParam("user_id", request.UserId).
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+    httpRedirectDecorator := networking.NewHttpTempRedirectDecorator(networkRetryDecorator, client.clientPolicy.maxRedirect)
+
+    // Invoke the HTTP request.
+    response, requestErr := httpRedirectDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewGetGenericDaoNotificationRegistrationsInternalResponse(response)
+}
+
+func (client *Client) GetBeansRetrieverBeansInternal(request *models.GetBeansRetrieverBeansInternalRequest) (*models.GetBeansRetrieverBeansInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_GET).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+    httpRedirectDecorator := networking.NewHttpTempRedirectDecorator(networkRetryDecorator, client.clientPolicy.maxRedirect)
+
+    // Invoke the HTTP request.
+    response, requestErr := httpRedirectDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewGetBeansRetrieverBeansInternalResponse(response)
+}
+
+func (client *Client) GetBeansRetrieversInternal(request *models.GetBeansRetrieversInternalRequest) (*models.GetBeansRetrieversInternalResponse, error) {
+    // Build the http request
+    httpRequest, err := networking.NewHttpRequestBuilder().
+        WithHttpVerb(HTTP_VERB_GET).
+        WithPath().
+        Build(client.connectionInfo)
+
+    if err != nil {
+        return nil, err
+    }
+
+    networkRetryDecorator := networking.NewNetworkRetryDecorator(client.sendNetwork, client.clientPolicy.maxRetries)
+    httpRedirectDecorator := networking.NewHttpTempRedirectDecorator(networkRetryDecorator, client.clientPolicy.maxRedirect)
+
+    // Invoke the HTTP request.
+    response, requestErr := httpRedirectDecorator.Invoke(httpRequest)
+    if requestErr != nil {
+        return nil, requestErr
+    }
+
+    // Create a response object based on the result.
+    return models.NewGetBeansRetrieversInternalResponse(response)
+}
+
