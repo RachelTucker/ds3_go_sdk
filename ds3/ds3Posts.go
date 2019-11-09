@@ -1334,7 +1334,7 @@ func (client *Client) PutGenericDaoNotificationRegistrationInternal(request *mod
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_POST).
-        WithPath().
+        WithPath("/_rest_/generic_dao_notification_registration").
         WithQueryParam("dao_type", request.DaoType).
         WithQueryParam("notification_end_point", request.NotificationEndPoint).
         WithOptionalQueryParam("format", networking.InterfaceToStrPtr(request.Format)).
@@ -1362,7 +1362,7 @@ func (client *Client) PutFeatureKeyInternal(request *models.PutFeatureKeyInterna
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_POST).
-        WithPath().
+        WithPath("/_rest_/feature_key").
         WithQueryParam("key", request.Key.String()).
         WithOptionalQueryParam("error_message", request.ErrorMessage).
         WithOptionalQueryParam("expiration_date", request.ExpirationDate).
@@ -1389,7 +1389,7 @@ func (client *Client) PutHeapDumpInternal(request *models.PutHeapDumpInternalReq
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_POST).
-        WithPath().
+        WithPath("/_rest_/heap_dump").
         WithQueryParam("application", request.Application.String()).
         Build(client.connectionInfo)
 
@@ -1413,7 +1413,7 @@ func (client *Client) PutFakeTapeEnvironmentInternal(request *models.PutFakeTape
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_POST).
-        WithPath().
+        WithPath("/_rest_/tape_environment").
         Build(client.connectionInfo)
 
     if err != nil {
@@ -1436,7 +1436,7 @@ func (client *Client) PutUserInternal(request *models.PutUserInternalRequest) (*
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_POST).
-        WithPath().
+        WithPath("/_rest_/user_internal").
         WithQueryParam("name", request.Name).
         WithOptionalQueryParam("default_data_policy_id", request.DefaultDataPolicyId).
         WithOptionalVoidQueryParam("force", request.Force).

@@ -9065,12 +9065,12 @@ func NewDeleteFeatureKeyInternalResponse(webResponse WebResponse) (*DeleteFeatur
 }
 
 type GetBeansRetrieverBeansInternalResponse struct {
-    TreeSet TreeSet
+    DatabaseContents DatabaseContents
     Headers *http.Header
 }
 
 func (getBeansRetrieverBeansInternalResponse *GetBeansRetrieverBeansInternalResponse) parse(webResponse WebResponse) error {
-        return parseResponsePayload(webResponse, &getBeansRetrieverBeansInternalResponse.TreeSet)
+        return parseResponsePayload(webResponse, &getBeansRetrieverBeansInternalResponse.DatabaseContents)
 }
 
 func NewGetBeansRetrieverBeansInternalResponse(webResponse WebResponse) (*GetBeansRetrieverBeansInternalResponse, error) {

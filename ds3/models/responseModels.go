@@ -6642,17 +6642,17 @@ type Type struct {
     NumberOfType *int
 }
 
-func (type *Type) parse(xmlNode *XmlNode, aggErr *AggregateError) {
+func (type1 *Type) parse(xmlNode *XmlNode, aggErr *AggregateError) {
 
     // Parse Child Nodes
     for _, child := range xmlNode.Children {
         switch child.XMLName.Local {
         case "BeansRetrieverName":
-            type.BeansRetrieverName = parseNullableString(child.Content)
+            type1.BeansRetrieverName = parseNullableString(child.Content)
         case "DomainName":
-            type.DomainName = parseNullableString(child.Content)
+            type1.DomainName = parseNullableString(child.Content)
         case "NumberOfType":
-            type.NumberOfType = parseNullableInt(child.Content, aggErr)
+            type1.NumberOfType = parseNullableInt(child.Content, aggErr)
         default:
             log.Printf("WARNING: unable to parse unknown xml tag '%s' while parsing Type.", child.XMLName.Local)
         }

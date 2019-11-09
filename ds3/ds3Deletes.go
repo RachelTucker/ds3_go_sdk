@@ -1590,7 +1590,7 @@ func (client *Client) DeleteGenericDaoNotificationRegistrationInternal(request *
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_DELETE).
-        WithPath().
+        WithPath("/_rest_/generic_dao_notification_registration/" + request.NotificationId).
         Build(client.connectionInfo)
 
     if err != nil {
@@ -1613,7 +1613,7 @@ func (client *Client) DeleteFeatureKeyInternal(request *models.DeleteFeatureKeyI
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_DELETE).
-        WithPath().
+        WithPath("/_rest_/feature_key/" + request.FeatureKey).
         Build(client.connectionInfo)
 
     if err != nil {
@@ -1636,7 +1636,7 @@ func (client *Client) QuiesceDataPathToPrepareForShutdownInternal(request *model
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_DELETE).
-        WithPath().
+        WithPath("/_rest_/data_path").
         WithOptionalVoidQueryParam("force", request.Force).
         Build(client.connectionInfo)
 
@@ -1660,7 +1660,7 @@ func (client *Client) DeleteUserInternal(request *models.DeleteUserInternalReque
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_DELETE).
-        WithPath().
+        WithPath("/_rest_/user_internal/" + request.UserInternal).
         Build(client.connectionInfo)
 
     if err != nil {

@@ -4203,7 +4203,7 @@ func (client *Client) GetCacheEntriesInternal(request *models.GetCacheEntriesInt
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_GET).
-        WithPath().
+        WithPath("/_rest_/cache_state").
         WithQueryParam("full_details", "").
         Build(client.connectionInfo)
 
@@ -4228,7 +4228,7 @@ func (client *Client) GetGenericDaoNotificationRegistrationInternal(request *mod
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_GET).
-        WithPath().
+        WithPath("/_rest_/generic_dao_notification_registration/" + request.NotificationId).
         Build(client.connectionInfo)
 
     if err != nil {
@@ -4252,7 +4252,7 @@ func (client *Client) GetGenericDaoNotificationRegistrationsInternal(request *mo
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_GET).
-        WithPath().
+        WithPath("/_rest_/generic_dao_notification_registration").
         WithOptionalVoidQueryParam("last_page", request.LastPage).
         WithOptionalQueryParam("page_length", networking.IntPtrToStrPtr(request.PageLength)).
         WithOptionalQueryParam("page_offset", networking.IntPtrToStrPtr(request.PageOffset)).
@@ -4281,7 +4281,7 @@ func (client *Client) GetBeansRetrieverBeansInternal(request *models.GetBeansRet
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_GET).
-        WithPath().
+        WithPath("/_rest_/beans_retriever/" + request.BeansRetriever).
         Build(client.connectionInfo)
 
     if err != nil {
@@ -4305,7 +4305,7 @@ func (client *Client) GetBeansRetrieversInternal(request *models.GetBeansRetriev
     // Build the http request
     httpRequest, err := networking.NewHttpRequestBuilder().
         WithHttpVerb(HTTP_VERB_GET).
-        WithPath().
+        WithPath("/_rest_/beans_retriever").
         Build(client.connectionInfo)
 
     if err != nil {
